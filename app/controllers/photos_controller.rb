@@ -18,4 +18,18 @@ class PhotosController < ApplicationController
 
   end
 
+  def cya
+    the_id = params.fetch("toast_id")
+
+    matching_photos = Photo.where({ :id => the_id })
+
+    the_photo = matching_photos.first
+
+    the_photo.destroy
+
+    redirect_to("/photos")
+    
+    # render({ :template => "photo_templates/cya"})
+  end
+
 end
